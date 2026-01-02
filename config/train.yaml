@@ -1,0 +1,23 @@
+base_model: codellama/CodeLLaMA-7b-Instruct-hf
+dataset_path: training/data/coding_qa.jsonl
+output_dir: outputs/codellama-coder
+max_seq_length: 384  # Reduced from 512 for faster training
+train:
+  batch_size: 1
+  gradient_accumulation: 4  # Reduced from 8 for faster updates
+  epochs: 1  # Reduced from 3 - can increase later if needed
+  learning_rate: 0.0002
+  warmup_ratio: 0.05
+  logging_steps: 10
+  save_steps: 50  # More frequent saves for shorter training
+  eval_steps: 50
+  fp16: true
+lora:
+  r: 8  # Reduced from 16 for faster training (less parameters to update)
+  alpha: 16  # Adjusted to match r
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - v_proj
+    - k_proj
+    - o_proj
