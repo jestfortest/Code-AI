@@ -5,7 +5,7 @@ max_seq_length: 384  # Reduced from 512 for faster training
 train:
   batch_size: 1
   gradient_accumulation: 4  # Reduced from 8 for faster updates
-  epochs: 1  # Reduced from 3 - can increase later if needed
+  epochs: 3  # Reduced from 3 - can increase later if needed
   learning_rate: 0.0002
   warmup_ratio: 0.05
   logging_steps: 10
